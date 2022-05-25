@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useState, /* useEffect */ } from 'react';
 import Form from './Components/Form';
-import Axios from 'axios'
+import axios from 'axios'
 
 
 const initialValues = {
@@ -30,7 +30,9 @@ function App() {
       role: formValues.role
     }
     
-    axios.post
+    axios.post()
+      .then()
+      .catch()
   }
 
   return (

@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
 
 // Form Component
 /* Needs to have inputs for:
@@ -8,31 +7,57 @@ import { useState } from 'react';
 * Role
 */
  
-// const {initialValues} = props;
+
 
 export default function Form(props) {
-    const { values, update/* , submit */ } = props;
-    console.log(props)
+    const { values, update, submit } = props;
+    // console.log(props)
+
     const onChange = (evt => {
         const name = evt.target.name;
         const { value } = evt.target;
         update(name, value)
     })
+
+    const onSubmit = (evt => {
+        evt.preventDefault();
+        submit();
+    })
     
 
     return (
         // Text inputs
-        <form>
-            <div>
-                <label>Username
+        <form className="form container" onSubmit={onSubmit}>
+            <div className="form-group inputs">
+                <label>Name
                     <input 
                         type="text"
-                        name="name"
+                        name="Name"
                         value={values.name}
                         onChange={onChange}
                         placeholder="Enter Name"
                         maxLength="30"
                     />
+                </label>
+
+                <label>Email
+                    <input 
+                        type="email"
+                        name="Email"
+                        value={values.email}
+                        onChange={onChange}
+                        placeholder="Enter Email Address"
+                    />
+                </label>
+
+                <label>Role
+                    <select value={values.role} name="role" onChange={onChange}>
+                        <option value="">--Select Role--</option>
+                        <option value="Backend Engineer">Backend Engineer</option>
+                        <option value="Frontend Engineer">Frontend Engineer</option>
+                        <option value="QA Analyst">QA Analyst</option>
+                        <option value="UI/UX Designer">UI/UX Designer</option>
+                    </select>
                 </label>
             </div>
         </form>
