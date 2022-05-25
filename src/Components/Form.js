@@ -59,6 +59,10 @@ export default function Form(props) {
                         <option value="UI/UX Designer">UI/UX Designer</option>
                     </select>
                 </label>
+
+                <div className="submit">
+                    <button disabled={ !values.username || !values.email || !values.role }>Submit!</button>
+                </div>
             </div>
         </form>
         

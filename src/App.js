@@ -1,6 +1,7 @@
 import './App.css';
-import React, { useState, /* useEffect */ } from 'react';
+import React, { useState, useEffect } from 'react';
 import Form from './Components/Form';
+import Member from './Components/Member'
 import axios from 'axios'
 
 
@@ -30,22 +31,36 @@ function App() {
       role: formValues.role
     }
     
-    axios.post()
-      .then()
-      .catch()
+    axios.post("fakeapi.com", newMember)
+      .then(res => {
+        setTeamList(...teamList, res.data);
+        setFormValues(initialValues);
+      })
   }
+
+  useEffect(() => {
+    axios.get("fakeapi.com").then(res => setTeamList(res.data))
+  }, [])
+  
 
   return (
     <div className="App">
-      <header className="App-header">
-        {/* <Link path="/" /> */}
-      </header>
       <h1>Team Builder App</h1>
       <Form 
       values={formValues}
       update={updateForm}
       submit={submitForm} />
+
+      {
+        teamList.map(teamMate => {
+          return (
+            <Member key={teamMate.id} details={teamMate} />
+          )
+        })
+      }
     </div>
+
+    
   );
 }
 
